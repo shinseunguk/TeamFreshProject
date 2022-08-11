@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofi
 
 class ViewController: UIViewController {
 
