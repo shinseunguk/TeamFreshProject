@@ -7,6 +7,6 @@ target 'TeamFreshProject' do
 
   # Pods for TeamFreshProject
 
-  pod 'Alamofire'
+  pod 'Alamofire', '5.6.1'
 
 end
