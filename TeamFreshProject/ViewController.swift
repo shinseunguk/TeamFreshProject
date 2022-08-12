@@ -14,6 +14,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var pwTextField: UITextField!
     @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var findIdBtn: UIButton!
+    @IBOutlet weak var findPwBtn: UIButton!
+    @IBOutlet weak var signUpBtn: UIButton!
+    
+    let helper : Helper = Helper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +28,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         setUP()
         
         loginBtn.tag = 0
+        findIdBtn.tag = 1
+        findPwBtn.tag = 2
+        signUpBtn.tag = 3
     }
     
     func setUP(){
@@ -58,10 +66,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
         loginBtn.layer.cornerRadius = 30
     }
 
-    @IBAction func btnAction(_ sender: Any) {
-        print((sender as AnyObject).tag!)
-        print("idTextField => \(idTextField.text!)")
-        print("pwTextField => \(pwTextField.text!)")
+    @IBAction func btnAction(_ sender: UIButton) {
+        sender.title(for: .normal)
+        
+        switch (sender as AnyObject).tag! {
+            case 0: // 로그인 버튼 클릭시
+                print("idTextField => \(idTextField.text!)")
+                print("pwTextField => \(pwTextField.text!)")
+            break
+            case 1...4: // 이외 버튼 클릭시
+            helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: (sender as UIButton).titleLabel!.text!, completeTitle: "확인", nil)
+            break
+            default:
+                print("default")
+        }
     }
     
 
