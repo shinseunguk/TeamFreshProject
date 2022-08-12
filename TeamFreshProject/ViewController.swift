@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var findIdBtn: UIButton!
     @IBOutlet weak var findPwBtn: UIButton!
     @IBOutlet weak var signUpBtn: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
     
     let helper : Helper = Helper()
     
@@ -31,6 +32,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         findIdBtn.tag = 1
         findPwBtn.tag = 2
         signUpBtn.tag = 3
+        
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
+        imageView.addGestureRecognizer(tapGR)
+        imageView.isUserInteractionEnabled = true
     }
     
     func setUP(){
@@ -66,22 +71,41 @@ class ViewController: UIViewController, UITextFieldDelegate {
         loginBtn.layer.cornerRadius = 30
     }
 
-    @IBAction func btnAction(_ sender: UIButton) {
+    @IBAction func btnAction(_ sender: AnyObject) {
         sender.title(for: .normal)
         
         switch (sender as AnyObject).tag! {
             case 0: // 로그인 버튼 클릭시
-                print("idTextField => \(idTextField.text!)")
-                print("pwTextField => \(pwTextField.text!)")
+                //로그인 로직
+                loginAction(idTextField: idTextField, pwTextField: pwTextField)
             break
-            case 1...4: // 이외 버튼 클릭시
-            helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: (sender as UIButton).titleLabel!.text!, completeTitle: "확인", nil)
+            case 1...3: // 이외 버튼 클릭시
+            helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: (sender as! UIButton).titleLabel!.text!, completeTitle: "확인", nil)
             break
             default:
                 print("default")
         }
     }
     
-
+    @objc func imageTapped(sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: "카카오 로그인", completeTitle: "확인", nil)
+        }
+    }
+    
+    func loginAction(idTextField : UITextField, pwTextField : UITextField){
+        if let text = idTextField.text, text.isEmpty{
+            helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: "아이디를 입력해주세요", completeTitle: "확인", nil) //set focus필요
+        }else if let text1 = pwTextField.text, text1.isEmpty {
+            helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: "비밀번호를 입력해주세요", completeTitle: "확인", nil) //set focus필요
+        }else { // id/pw칸이 빈칸이 아닐때
+            if !("".validateEmail(idTextField.text!)) { // 정규식 false 일때
+                helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: "아이디는 이메일 형태로 입력해주세요", completeTitle: "확인", nil) //set focus필요
+            }else { // 정규식 true
+                helper.tryLogin()
+            }
+        }
+        
+    }
 }
 

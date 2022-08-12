@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oAt-CW-aRh">
-                                <rect key="frame" x="87" y="148.5" width="240" height="83.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_login" translatesAutoresizingMaskIntoConstraints="NO" id="oAt-CW-aRh">
+                                <rect key="frame" x="87" y="146" width="240" height="88"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="UTe-NG-bg3"/>
                                 </constraints>
@@ -99,13 +99,21 @@
                                     <constraint firstAttribute="width" constant="2" id="X2b-uZ-10Y"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kakao_login" translatesAutoresizingMaskIntoConstraints="NO" id="fym-uZ-8i2">
+                                <rect key="frame" x="51" y="583" width="312" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="0br-yL-4Po"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fym-uZ-8i2" secondAttribute="trailing" constant="51" id="0cb-yb-LmO"/>
                             <constraint firstItem="9hR-iC-Hw9" firstAttribute="leading" secondItem="rBe-de-Mek" secondAttribute="trailing" id="18J-Me-Wxe"/>
                             <constraint firstItem="d4R-g0-D3o" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="1ft-Mg-PtA"/>
                             <constraint firstItem="zjO-Ub-LTp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="1h9-fl-09h"/>
+                            <constraint firstItem="fym-uZ-8i2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="3bP-PT-GSx"/>
                             <constraint firstItem="x6S-43-Urx" firstAttribute="leading" secondItem="jcf-dT-h4A" secondAttribute="trailing" constant="3" id="5db-LX-dyA"/>
                             <constraint firstItem="9hR-iC-Hw9" firstAttribute="top" secondItem="d4R-g0-D3o" secondAttribute="bottom" constant="40" id="7Xr-80-2Kz"/>
                             <constraint firstItem="tfp-gj-eil" firstAttribute="top" secondItem="d4R-g0-D3o" secondAttribute="bottom" constant="40" id="8bV-W6-eIi"/>
@@ -118,6 +126,7 @@
                             <constraint firstItem="oAt-CW-aRh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="102" id="MJq-5K-nTm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d4R-g0-D3o" secondAttribute="trailing" constant="20" id="TNr-XQ-qKy"/>
                             <constraint firstItem="Nsv-X9-AoQ" firstAttribute="top" secondItem="oAt-CW-aRh" secondAttribute="bottom" constant="23" id="VTC-eW-xgg"/>
+                            <constraint firstItem="fym-uZ-8i2" firstAttribute="top" secondItem="jcf-dT-h4A" secondAttribute="bottom" constant="50" id="VhW-hR-BZe"/>
                             <constraint firstItem="jcf-dT-h4A" firstAttribute="top" secondItem="d4R-g0-D3o" secondAttribute="bottom" constant="40" id="WZa-7u-oif"/>
                             <constraint firstItem="d4R-g0-D3o" firstAttribute="top" secondItem="zjO-Ub-LTp" secondAttribute="bottom" constant="30" id="Wf5-rk-K70"/>
                             <constraint firstItem="tfp-gj-eil" firstAttribute="leading" secondItem="x6S-43-Urx" secondAttribute="trailing" id="a0V-AI-Tjj"/>
@@ -132,6 +141,7 @@
                         <outlet property="findIdBtn" destination="rBe-de-Mek" id="cDP-g4-4s2"/>
                         <outlet property="findPwBtn" destination="jcf-dT-h4A" id="Pbr-e9-hfq"/>
                         <outlet property="idTextField" destination="Nsv-X9-AoQ" id="fgb-o1-Qo3"/>
+                        <outlet property="imageView" destination="fym-uZ-8i2" id="Otq-WW-k0K"/>
                         <outlet property="loginBtn" destination="d4R-g0-D3o" id="hjb-8M-XkA"/>
                         <outlet property="pwTextField" destination="zjO-Ub-LTp" id="mEa-f6-MJ6"/>
                         <outlet property="signUpBtn" destination="tfp-gj-eil" id="0Gh-td-rqp"/>
@@ -143,7 +153,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="kakao_login" width="900" height="144"/>
+        <image name="logo_login" width="320" height="153"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
