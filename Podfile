@@ -8,5 +8,6 @@ target 'TeamFreshProject' do
   # Pods for TeamFreshProject
 
   pod 'Alamofire', '5.6.1'
+  pod 'Tabman'
 
 end
