@@ -21,6 +21,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     let helper : Helper = Helper()
     
+    struct userlist: Codable {
+        var code : Int
+        var data : String
+        var msg : String
+        var success : Int
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -72,8 +79,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func btnAction(_ sender: AnyObject) {
-        sender.title(for: .normal)
-        
         switch (sender as AnyObject).tag! {
             case 0: // 로그인 버튼 클릭시
                 //로그인 로직
@@ -99,13 +104,63 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }else if let text1 = pwTextField.text, text1.isEmpty {
             helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: "비밀번호를 입력해주세요", completeTitle: "확인", nil) //set focus필요
         }else { // id/pw칸이 빈칸이 아닐때
-            if !("".validateEmail(idTextField.text!)) { // 정규식 false 일때
-                helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: "아이디는 이메일 형태로 입력해주세요", completeTitle: "확인", nil) //set focus필요
-            }else { // 정규식 true
-                helper.tryLogin()
-            }
+            tryLogin(identity: idTextField.text!, password: pwTextField.text!)
         }
+    }
+    
+    func tryLogin(identity : String, password : String) {
+            let url = "https://yhapidev.teamfresh.co.kr/v1/signIn"
+            var request = URLRequest(url: URL(string: url)!)
+            request.httpMethod = "POST"
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "accept")
+            request.setValue("utf-8", forHTTPHeaderField: "Accept-Charset")
         
+            request.timeoutInterval = 10
+            
+            // POST 로 보낼 정보 appdev / Timf1234
+            let params = [
+                "userLoginId" : identity,
+                "userLoginPassword" : password
+            ] as Dictionary
+
+            // httpBody 에 parameters 추가
+            do {
+                try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+            } catch {
+                print("http Body Error")
+            }
+            
+            AF.request(request).responseJSON { (response) in
+                switch response.result {
+                case .success:
+                    print("POST 성공")
+                    do {
+                        // [응답 전체 data 를 json to dictionary 로 변환 실시]
+                        let dicCreate = try JSONSerialization.jsonObject(with: Data(response.data!), options: []) as! [String:Any]
+                        // [jsonArray In jsonObject 형식 데이터를 파싱 실시 : 유니코드 형식 문자열이 자동으로 변환됨]
+                        print("msg =>", dicCreate["msg"]!)
+                        print("code =>", dicCreate["code"]!)
+                        print("success =>", dicCreate["success"]!)
+                        
+                        if dicCreate["code"]! as? Int != 0 { // 로그인 실패 server 에서 받아온 String값 alert으로 뿌려줌
+                            self.helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: dicCreate["msg"]! as! String, completeTitle: "확인", nil)
+                        }else { // 로그인 성공 => 화면이동
+                            print("gogo")
+                            
+                            guard let pushVC = self.storyboard?.instantiateViewController(identifier: "BoardController") as? BoardController else{
+                                return
+                            }
+                            self.navigationController?.pushViewController(pushVC, animated: true)
+                        }
+                        
+                    } catch {
+                        print("catch :: ", error.localizedDescription)
+                    }
+                case .failure(let error):
+                    print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+                }
+            }
     }
 }
 
