@@ -177,9 +177,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEX-qJ-T7g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1710" y="786"/>
+            <point key="canvasLocation" x="-272" y="1621"/>
         </scene>
-        <!--Board Controller-->
+        <!--게시판-->
         <scene sceneID="AL5-f5-GJk">
             <objects>
                 <viewController storyboardIdentifier="BoardController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yHu-oj-JVy" customClass="BoardController" customModule="TeamFreshProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -225,6 +225,7 @@
                             <constraint firstItem="9RY-wY-nFh" firstAttribute="leading" secondItem="jPK-HF-j2q" secondAttribute="leading" constant="35" id="tHz-Vf-SKj"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="게시판" id="gks-6v-R8G"/>
                     <connections>
                         <outlet property="tempView" destination="9RY-wY-nFh" id="vDW-TG-ubw"/>
                         <outlet property="writeBtn" destination="T4k-bc-amX" id="k1E-OO-tWy"/>
@@ -232,7 +233,61 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PdS-bp-2PL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1710.144927536232" y="95.758928571428569"/>
+            <point key="canvasLocation" x="2597" y="855"/>
+        </scene>
+        <!--정산-->
+        <scene sceneID="zyE-C5-DkN">
+            <objects>
+                <viewController id="ENq-7F-eal" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Cbp-JI-RRl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="loH-SH-kix"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="정산" id="DC4-62-ICy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rxq-dN-257" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1849" y="855"/>
+        </scene>
+        <!--운송리뷰-->
+        <scene sceneID="zoa-Uc-5OA">
+            <objects>
+                <viewController id="CaB-AU-Nig" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ky0-hG-TL4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="zDV-dA-1or"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="운송리뷰" landscapeImage="menu_review" id="oDj-Cw-ejL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="erf-Wh-z0K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3313" y="855"/>
+        </scene>
+        <!--Custom Tab Bar Controller-->
+        <scene sceneID="K7J-uO-lSh">
+            <objects>
+                <tabBarController storyboardIdentifier="CustomTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4iU-PB-NzJ" customClass="CustomTabBarController" customModule="TeamFreshProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gTv-aE-i2q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <outlet property="uiTabBar" destination="gTv-aE-i2q" id="zmm-ma-HbD"/>
+                        <segue destination="vXi-KD-Ixm" kind="relationship" relationship="viewControllers" id="uXZ-zR-n3Z"/>
+                        <segue destination="0mj-eo-MeK" kind="relationship" relationship="viewControllers" id="JSv-Vr-kvN"/>
+                        <segue destination="ENq-7F-eal" kind="relationship" relationship="viewControllers" id="ejX-kZ-MEX"/>
+                        <segue destination="yHu-oj-JVy" kind="relationship" relationship="viewControllers" id="o1Z-U0-C5o"/>
+                        <segue destination="CaB-AU-Nig" kind="relationship" relationship="viewControllers" id="gAG-Be-RpY"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1E0-AF-4if" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1851" y="100"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lF4-Fb-MPK">
@@ -277,7 +332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EPp-FS-MjP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2384" y="785"/>
+            <point key="canvasLocation" x="428" y="1621"/>
         </scene>
         <!--Controller-->
         <scene sceneID="1fc-RK-WLx">
@@ -304,12 +359,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qt0-fv-SS7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3059" y="785"/>
+            <point key="canvasLocation" x="1110" y="1621"/>
+        </scene>
+        <!--일구하기-->
+        <scene sceneID="K5f-2H-cvW">
+            <objects>
+                <viewController id="0mj-eo-MeK" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b2x-UA-7Es">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="KRb-Ht-hx1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="일구하기" id="RbU-lj-DBi"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aVl-gk-BsB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1091" y="855"/>
+        </scene>
+        <!--홈-->
+        <scene sceneID="Rsl-qZ-IXL">
+            <objects>
+                <viewController id="vXi-KD-Ixm" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mp1-Ey-HQF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="dyu-L8-hLl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="홈" id="8Ap-Qv-BS4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Zc-7f-Ils" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="388" y="855"/>
         </scene>
     </scenes>
     <resources>
         <image name="kakao_login" width="450" height="72"/>
         <image name="logo_login" width="240" height="115"/>
+        <image name="menu_review" width="56" height="56"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -18,6 +18,7 @@
 		A2598AF328A94714009545E7 /* VC1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2598AF228A94714009545E7 /* VC1Controller.swift */; };
 		A2598AF528A94720009545E7 /* VC2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2598AF428A94720009545E7 /* VC2Controller.swift */; };
 		A2598AF728A94727009545E7 /* VC3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2598AF628A94727009545E7 /* VC3Controller.swift */; };
+		A2598AF928AA810C009545E7 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2598AF828AA810C009545E7 /* CustomTabBarController.swift */; };
 		A2F058CE28A543D000CAB8F2 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F058CD28A543D000CAB8F2 /* Helper.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		A2598AF228A94714009545E7 /* VC1Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC1Controller.swift; sourceTree = "<group>"; };
 		A2598AF428A94720009545E7 /* VC2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC2Controller.swift; sourceTree = "<group>"; };
 		A2598AF628A94727009545E7 /* VC3Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC3Controller.swift; sourceTree = "<group>"; };
+		A2598AF828AA810C009545E7 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		A299CDB936C1B4ACA6C7D582 /* Pods_TeamFreshProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamFreshProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F058CD28A543D000CAB8F2 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +85,7 @@
 				04F169ED28A4E7980092A6E6 /* Assets.xcassets */,
 				04F169EF28A4E7980092A6E6 /* LaunchScreen.storyboard */,
 				04F169F228A4E7980092A6E6 /* Info.plist */,
+				A2598AF828AA810C009545E7 /* CustomTabBarController.swift */,
 			);
 			path = TeamFreshProject;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				04F169E728A4E7940092A6E6 /* SceneDelegate.swift in Sources */,
 				A2598AF728A94727009545E7 /* VC3Controller.swift in Sources */,
 				A2F058CE28A543D000CAB8F2 /* Helper.swift in Sources */,
+				A2598AF928AA810C009545E7 /* CustomTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

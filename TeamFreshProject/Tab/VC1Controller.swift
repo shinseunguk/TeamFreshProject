@@ -11,6 +11,6 @@ import UIKit
 class VC1Controller : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(#function)
+        print("\(#file)!!!!" ,#function)
     }
 }
