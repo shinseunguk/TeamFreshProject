@@ -98,7 +98,6 @@ extension BoardController: PageboyViewControllerDataSource, TMBarDataSource{
                 let title = "Page \(index)"
                 return TMBarItem(title: title)
             }
-
         }
         
         func numberOfViewControllers(in pageboyViewController: PageboyViewController) -> Int {

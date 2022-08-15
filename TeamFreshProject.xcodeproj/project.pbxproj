@@ -73,10 +73,10 @@
 		04F169E328A4E7940092A6E6 /* TeamFreshProject */ = {
 			isa = PBXGroup;
 			children = (
-				A2598AEF28A8AC59009545E7 /* BoardController.swift */,
 				A2598AF128A94703009545E7 /* Tab */,
 				A2F058CC28A543C500CAB8F2 /* Helper */,
 				04F169E428A4E7940092A6E6 /* AppDelegate.swift */,
+				A2598AEF28A8AC59009545E7 /* BoardController.swift */,
 				04F169E628A4E7940092A6E6 /* SceneDelegate.swift */,
 				04F169E828A4E7940092A6E6 /* ViewController.swift */,
 				04F169EA28A4E7940092A6E6 /* Main.storyboard */,
