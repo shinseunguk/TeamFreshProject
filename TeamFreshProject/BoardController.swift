@@ -28,7 +28,9 @@ class BoardController : TabmanViewController{
     }
     
     override func viewDidLayoutSubviews() {
+        //글쓰기 버튼 setup
         writeBtn.layer.cornerRadius = 5
+        writeBtn.backgroundColor = UIColor.init(displayP3Red: 147/255, green: 111/255, blue: 104/255, alpha: 1)// backgroundColor #936f68
     }
     
     func setTabMan() {
