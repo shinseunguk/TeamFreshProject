@@ -10,27 +10,31 @@ import UIKit
 import Tabman
 import Pageboy
 
-class BoardController : TabmanViewController{
+class BoardController : TabmanViewController {
     
     private var viewControllers: Array<UIViewController> = []
-    
     @IBOutlet weak var tempView: UIView! // 상단 탭바 들어갈 자리
-    @IBOutlet weak var writeBtn: UIButton!
-    @IBOutlet weak var viewMain: UIView!
     
     var viewPagerArr = ["자유게시판", "한줄평", "영차TV"]
+    var writeBtn: UIButton = {
+        let writeBtn = UIButton()
+        writeBtn.translatesAutoresizingMaskIntoConstraints = false
+        writeBtn.setTitle("글쓰기", for: .normal)
+        writeBtn.layer.cornerRadius = 5
+        writeBtn.backgroundColor = UIColor.init(displayP3Red: 147/255, green: 111/255, blue: 104/255, alpha: 1)// backgroundColor #936f68
+        return writeBtn
+    }()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tempView.layer.addBorder([.bottom], color: UIColor.systemGray6, width: 2.0)
+    }
     
     override func viewDidLoad() {
         print("\(#function)")
         
-        navigationBarSetUp()// 네비게이션바 설정
-        setTabMan()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        //글쓰기 버튼 setup
-        writeBtn.layer.cornerRadius = 5
-        writeBtn.backgroundColor = UIColor.init(displayP3Red: 147/255, green: 111/255, blue: 104/255, alpha: 1)// backgroundColor #936f68
+        setTabMan() // Tabman 설정
+        navigationBarSetUp() // 네비게이션바 설정
+        writeBtnSetUp() // [글쓰기] 버튼 UI
     }
     
     func setTabMan() {
@@ -48,7 +52,7 @@ class BoardController : TabmanViewController{
         let bar = TMBar.ButtonBar()
 //        let bar = TMBar.TabBar()
         bar.backgroundView.style = .blur(style: .regular)
-        bar.layout.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        bar.layout.contentInset = UIEdgeInsets(top: 0.0, left: 25.0, bottom: 0.0, right: 0.0)
         bar.buttons.customize { (button) in
             button.tintColor = UIColor.systemGray2 // 선택 안되어 있을 때
             button.selectedTintColor = .black // 선택 되어 있을 때
@@ -58,8 +62,8 @@ class BoardController : TabmanViewController{
         bar.indicator.weight = .medium
         bar.indicator.tintColor = .black
         bar.indicator.overscrollBehavior = .bounce
-        bar.layout.alignment = .centerDistributed
-        bar.layout.contentMode = .fit
+//        bar.layout.alignment = .
+//        bar.layout.contentMode = .fit
         bar.layout.interButtonSpacing = 20 // 버튼 사이 간격
 
         bar.layout.transitionStyle = .snap // Customize
@@ -81,6 +85,14 @@ class BoardController : TabmanViewController{
         let leftBarButton = UIBarButtonItem.init(image: UIImage(systemName: "bell"),  style: .plain, target: self, action: nil)
         leftBarButton.tintColor = .black
         self.navigationItem.leftBarButtonItem = leftBarButton
+    }
+    
+    func writeBtnSetUp(){
+        tempView.addSubview(writeBtn)
+        tempView.bringSubviewToFront(writeBtn)
+        writeBtn.rightAnchor.constraint(equalTo: tempView.rightAnchor, constant: -20).isActive = true
+        writeBtn.bottomAnchor.constraint(equalTo: tempView.bottomAnchor, constant: -8).isActive = true
+        writeBtn.widthAnchor.constraint(equalToConstant: 75).isActive = true
     }
 }
 
