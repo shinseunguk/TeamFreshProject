@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aFg-CB-xjS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aFg-CB-xjS">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -195,16 +195,14 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sUI-bg-RbS">
-                                <rect key="frame" x="0.0" y="94" width="428" height="500"/>
+                                <rect key="frame" x="0.0" y="94" width="428" height="749"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="500" id="D3x-FV-glF"/>
-                                </constraints>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jPK-HF-j2q"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="jPK-HF-j2q" firstAttribute="bottom" secondItem="sUI-bg-RbS" secondAttribute="bottom" id="5iF-qd-43x"/>
                             <constraint firstItem="9RY-wY-nFh" firstAttribute="top" secondItem="jPK-HF-j2q" secondAttribute="top" constant="10" id="Ghe-BY-yop"/>
                             <constraint firstItem="sUI-bg-RbS" firstAttribute="top" secondItem="9RY-wY-nFh" secondAttribute="bottom" id="NMS-Or-L2R"/>
                             <constraint firstItem="sUI-bg-RbS" firstAttribute="leading" secondItem="jPK-HF-j2q" secondAttribute="leading" id="PSR-39-qEJ"/>
@@ -438,8 +436,8 @@
         <image name="4" width="56" height="56"/>
         <image name="4S" width="56" height="56"/>
         <image name="5" width="56" height="56"/>
-        <image name="kakao_login" width="450" height="72"/>
-        <image name="logo_login" width="640" height="306"/>
+        <image name="kakao_login" width="300" height="48"/>
+        <image name="logo_login" width="160" height="77"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

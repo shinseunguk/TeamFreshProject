@@ -144,18 +144,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         print("code =>", dicCreate["code"]!)
                         print("success =>", dicCreate["success"]!)
                         
-                        if dicCreate["code"]! as? Int != 0 { // 로그인 실패 server 에서 받아온 String값 alert으로 뿌려줌
-                            self.helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: dicCreate["msg"]! as! String, completeTitle: "확인", nil)
-                        }else { // 로그인 성공 => 화면이동
-//                            guard let pushVC = self.storyboard?.instantiateViewController(identifier: "BoardController") as? BoardController else{
-//                                return
-//                            }
-//                            self.navigationController?.pushViewController(pushVC, animated: true)
-                            
+                        if dicCreate["code"]! as? Int == 0 || (dicCreate["code"]! as? Int)! >= 0 { // 로그인 성공 => 화면이동
                             let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "CustomTabBarController")
                             self.navigationController?.pushViewController(pushVC!, animated: true)
+                        }else { // 로그인 실패 server 에서 받아온 String값 alert으로 뿌려줌
+                            self.helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: dicCreate["msg"]! as! String, completeTitle: "확인", nil)
                         }
-                        
                     } catch {
                         print("catch :: ", error.localizedDescription)
                     }

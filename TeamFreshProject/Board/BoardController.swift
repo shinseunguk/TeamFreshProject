@@ -12,10 +12,26 @@ import Pageboy
 import Alamofire
 
 class BoardController : TabmanViewController {
-    
+    let helper : Helper = Helper()
     private var viewControllers: Array<UIViewController> = []
     @IBOutlet weak var tempView: UIView! // 상단 탭바 들어갈 자리
     @IBOutlet weak var tableView: UITableView!
+    
+    let length : Int = 20
+    
+    var recordsTotal : Int = 0
+    
+    var index : Int = 0
+    var searchObj : Dictionary<String, Any> = [:] //Server Request 하기 위한 Dictionary
+    
+    var wrterNcnmArr : [Any] = []
+    var anscntArr : [Int] = []
+    var creatDtArr : [Any] = []
+    var rdcntArr : [Int] = []
+    var boardCnArr : [Any] = []
+    
+    
+    
     
     var viewPagerArr = ["자유게시판", "한줄평", "영차TV"]
     var writeBtn: UIButton = {
@@ -27,6 +43,15 @@ class BoardController : TabmanViewController {
         return writeBtn
     }()
     
+    var creatDEnd : String = {
+        var now = NSDate()
+        var formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+//        print("##", formatter.string(from: now as Date))
+        return formatter.string(from: now as Date)
+    }()
+    
     override func viewDidAppear(_ animated: Bool) {
         tempView.layer.addBorder([.bottom], color: UIColor.systemGray6, width: 2.0)
     }
@@ -34,9 +59,15 @@ class BoardController : TabmanViewController {
     override func viewDidLoad() {
         print("\(#function)")
         
-        tableView.register(UINib(nibName: "BoardTableViewCell", bundle: nil), forCellReuseIdentifier: "BoardTableViewCell")
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
+        searchObj["boardCn"] = "string"
+        searchObj["boardSj"] = "string"
+        searchObj["boardTy"] = "string"
+        searchObj["creatDEnd"] = creatDEnd
+        searchObj["creatDStart"] = "2022-06-28T08:48:15.289Z"
+        searchObj["wrterLoginId"] = "string"
+        searchObj["wrterNcnm"] = "string"
+        
+        requestServer()
         
         
         setTabMan() // Tabman 설정
@@ -104,7 +135,7 @@ class BoardController : TabmanViewController {
         writeBtn.widthAnchor.constraint(equalToConstant: 75).isActive = true
     }
     
-    func requestServer(identity : String, password : String) {
+    func requestServer() {
             let url = "https://yhapidev.teamfresh.co.kr/v1/free-boards/Dt"
             var request = URLRequest(url: URL(string: url)!)
             request.httpMethod = "POST"
@@ -113,13 +144,14 @@ class BoardController : TabmanViewController {
             request.setValue("utf-8", forHTTPHeaderField: "Accept-Charset")
         
             request.timeoutInterval = 10
-            
-            // POST 로 보낼 정보 appdev / Timf1234
+        
             let params = [
-                "userLoginId" : identity,
-                "userLoginPassword" : password
+                "length" : length,
+                "searchObj" : searchObj,
+                "start" : length * index
             ] as Dictionary
 
+        
             // httpBody 에 parameters 추가
             do {
                 try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
@@ -135,22 +167,39 @@ class BoardController : TabmanViewController {
                         // [응답 전체 data 를 json to dictionary 로 변환 실시]
                         let dicCreate = try JSONSerialization.jsonObject(with: Data(response.data!), options: []) as! [String:Any]
                         // [jsonArray In jsonObject 형식 데이터를 파싱 실시 : 유니코드 형식 문자열이 자동으로 변환됨]
-                        print("msg =>", dicCreate["msg"]!)
-                        print("code =>", dicCreate["code"]!)
-                        print("success =>", dicCreate["success"]!)
+//                        print("##\n",dicCreate)
+                        self.recordsTotal = dicCreate["recordsTotal"] as! Int
                         
-                        if dicCreate["code"]! as? Int != 0 { // 로그인 실패 server 에서 받아온 String값 alert으로 뿌려줌
-//                            self.helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: dicCreate["msg"]! as! String, completeTitle: "확인", nil)
-                        }else { // 로그인 성공 => 화면이동
-//                            guard let pushVC = self.storyboard?.instantiateViewController(identifier: "BoardController") as? BoardController else{
-//                                return
-//                            }
-//                            self.navigationController?.pushViewController(pushVC, animated: true)
+                        if dicCreate["code"]! as? Int == 0 || (dicCreate["code"]! as? Int)! >= 0 { // 서버 통신성공
+                            print("##\n",dicCreate["data"]!)
+                            let JSON = dicCreate["data"]! as! NSArray
+                            for x in 0 ... 19 {
+                                let firstResult = JSON[x]
+                                //Convert to Data
+                                let jsonData = try JSONSerialization.data(withJSONObject: firstResult, options: JSONSerialization.WritingOptions.prettyPrinted)
+                                let json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
+                                print("\(x)????1 ",json!["wrterNcnm"]! as Any) // 작성자
+                                print("\(x)????2 ",json!["anscnt"]! as Any) // 댓글수
+                                print("\(x)????3 ",json!["creatDt"]! as Any) // 생성일시
+                                print("\(x)????4 ",json!["rdcnt"]! as Any) // 조회수
+                                print("\(x)????5 ",json!["boardCn"]! as Any) // 게시글 내용
+                                
+                                //json에서 값 가져와 배열로 담기 => tableView에 값들 뿌려주기 위한 작업
+                                self.wrterNcnmArr.append(json!["wrterNcnm"]! as Any)
+                                self.anscntArr.append(json!["anscnt"]! as! Int)
+                                self.creatDtArr.append(json!["creatDt"]! as Any)
+                                self.rdcntArr.append(json!["rdcnt"]! as! Int)
+                                self.boardCnArr.append(json!["boardCn"]! as Any)
+                            }
+                                //서버에서 가져온 값들 set하기위한 reload
+                                self.tableView.register(UINib(nibName: "BoardTableViewCell", bundle: nil), forCellReuseIdentifier: "BoardTableViewCell")
+                                self.tableView.dataSource = self
+                                self.tableView.delegate = self
+                                self.tableView.reloadData()
                             
-                            let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "CustomTabBarController")
-                            self.navigationController?.pushViewController(pushVC!, animated: true)
+                        }else { // 서버 통신실패
+                            print("서버 통신실패 예외처리 ~")
                         }
-                        
                     } catch {
                         print("catch :: ", error.localizedDescription)
                     }
@@ -158,28 +207,25 @@ class BoardController : TabmanViewController {
                     print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
                 }
             }
+        index += 1
     }
+    
 }
 
 extension BoardController: PageboyViewControllerDataSource, TMBarDataSource, UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewPagerArr.count
+        return index * length
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // 내가 정의한 Cell 만들기
         let cell: BoardTableViewCell = tableView.dequeueReusableCell(withIdentifier: "BoardTableViewCell", for: indexPath) as! BoardTableViewCell
-        // Cell Label의 내용 지정
+        cell.contentLabel.text = boardCnArr[indexPath.row] as! String
+        cell.nickNameLabel.text = wrterNcnmArr[indexPath.row] as! String
+        cell.dateLabel.text = creatDtArr[indexPath.row] as! String
+        cell.viewCountLabel.text = "조회 \(rdcntArr[indexPath.row] as! Int)"
+        cell.commentCountLabel.text = "\(anscntArr[indexPath.row] as! Int)"
         
-        if indexPath.row == 0 {
-            cell.contentLabel.text = "이번달 명세서 언제부터 볼 수"
-        }else {
-            cell.contentLabel.text = "이번달 명세서 언제부터 볼 수 있나요 이번달 명세서 언제부터 볼 수 있나요"
-        }
-        
-        
-        // 생성한 Cell 리턴
         return cell
     }
     
@@ -187,9 +233,21 @@ extension BoardController: PageboyViewControllerDataSource, TMBarDataSource, UIT
         return 109
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("willDisplay " ,indexPath.row)
+        //240 .. 260
+        if self.recordsTotal > indexPath.row { // 252  < 20 40 60 80 ... 220 240
+            if indexPath.row == (index * length) - 1 { // 테이블뷰 맨아래까지 도달
+                print("테이블뷰 맨아래까지 도달할때 서버통신")
+                requestServer()
+            }
+        }
+    }
+    
     
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
         
+            //자유게시판 한줄평 영차TV
             // MARK: - Tab 안 글씨들
             switch index {
             case 0:
