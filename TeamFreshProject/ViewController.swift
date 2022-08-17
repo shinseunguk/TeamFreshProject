@@ -82,11 +82,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         switch (sender as AnyObject).tag! {
             case 0: // 로그인 버튼 클릭시
                 //로그인 로직
+                helper.showLoadingOneSec() // 중복터치 방지
                 loginAction(idTextField: idTextField, pwTextField: pwTextField)
-            break
+                break
             case 1...3: // 이외 버튼 클릭시
-            helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: (sender as! UIButton).titleLabel!.text!, completeTitle: "확인", nil)
-            break
+                helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: (sender as! UIButton).titleLabel!.text!, completeTitle: "확인", nil)
+                break
             default:
                 print("default")
         }
