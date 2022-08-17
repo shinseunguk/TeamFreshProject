@@ -9,11 +9,13 @@ import Foundation
 import UIKit
 import Tabman
 import Pageboy
+import Alamofire
 
 class BoardController : TabmanViewController {
     
     private var viewControllers: Array<UIViewController> = []
     @IBOutlet weak var tempView: UIView! // 상단 탭바 들어갈 자리
+    @IBOutlet weak var tableView: UITableView!
     
     var viewPagerArr = ["자유게시판", "한줄평", "영차TV"]
     var writeBtn: UIButton = {
@@ -32,9 +34,16 @@ class BoardController : TabmanViewController {
     override func viewDidLoad() {
         print("\(#function)")
         
+        tableView.register(UINib(nibName: "BoardTableViewCell", bundle: nil), forCellReuseIdentifier: "BoardTableViewCell")
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        
+        
         setTabMan() // Tabman 설정
         navigationBarSetUp() // 네비게이션바 설정
         writeBtnSetUp() // [글쓰기] 버튼 UI
+        
+        
     }
     
     func setTabMan() {
@@ -94,9 +103,90 @@ class BoardController : TabmanViewController {
         writeBtn.bottomAnchor.constraint(equalTo: tempView.bottomAnchor, constant: -8).isActive = true
         writeBtn.widthAnchor.constraint(equalToConstant: 75).isActive = true
     }
+    
+    func requestServer(identity : String, password : String) {
+            let url = "https://yhapidev.teamfresh.co.kr/v1/free-boards/Dt"
+            var request = URLRequest(url: URL(string: url)!)
+            request.httpMethod = "POST"
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "accept")
+            request.setValue("utf-8", forHTTPHeaderField: "Accept-Charset")
+        
+            request.timeoutInterval = 10
+            
+            // POST 로 보낼 정보 appdev / Timf1234
+            let params = [
+                "userLoginId" : identity,
+                "userLoginPassword" : password
+            ] as Dictionary
+
+            // httpBody 에 parameters 추가
+            do {
+                try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+            } catch {
+                print("http Body Error")
+            }
+            
+            AF.request(request).responseJSON { (response) in
+                switch response.result {
+                case .success:
+                    print("POST 성공")
+                    do {
+                        // [응답 전체 data 를 json to dictionary 로 변환 실시]
+                        let dicCreate = try JSONSerialization.jsonObject(with: Data(response.data!), options: []) as! [String:Any]
+                        // [jsonArray In jsonObject 형식 데이터를 파싱 실시 : 유니코드 형식 문자열이 자동으로 변환됨]
+                        print("msg =>", dicCreate["msg"]!)
+                        print("code =>", dicCreate["code"]!)
+                        print("success =>", dicCreate["success"]!)
+                        
+                        if dicCreate["code"]! as? Int != 0 { // 로그인 실패 server 에서 받아온 String값 alert으로 뿌려줌
+                            self.helper.showAlertAction1(vc: self, preferredStyle: .alert, title: "알림", message: dicCreate["msg"]! as! String, completeTitle: "확인", nil)
+                        }else { // 로그인 성공 => 화면이동
+//                            guard let pushVC = self.storyboard?.instantiateViewController(identifier: "BoardController") as? BoardController else{
+//                                return
+//                            }
+//                            self.navigationController?.pushViewController(pushVC, animated: true)
+                            
+                            let pushVC = self.storyboard?.instantiateViewController(withIdentifier: "CustomTabBarController")
+                            self.navigationController?.pushViewController(pushVC!, animated: true)
+                        }
+                        
+                    } catch {
+                        print("catch :: ", error.localizedDescription)
+                    }
+                case .failure(let error):
+                    print("🚫 Alamofire Request Error\nCode:\(error._code), Message: \(error.errorDescription!)")
+                }
+            }
+    }
 }
 
-extension BoardController: PageboyViewControllerDataSource, TMBarDataSource{
+extension BoardController: PageboyViewControllerDataSource, TMBarDataSource, UITableViewDataSource, UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewPagerArr.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // 내가 정의한 Cell 만들기
+        let cell: BoardTableViewCell = tableView.dequeueReusableCell(withIdentifier: "BoardTableViewCell", for: indexPath) as! BoardTableViewCell
+        // Cell Label의 내용 지정
+        
+        if indexPath.row == 0 {
+            cell.contentLabel.text = "이번달 명세서 언제부터 볼 수"
+        }else {
+            cell.contentLabel.text = "이번달 명세서 언제부터 볼 수 있나요 이번달 명세서 언제부터 볼 수 있나요"
+        }
+        
+        
+        // 생성한 Cell 리턴
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 109
+    }
+    
     
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
         

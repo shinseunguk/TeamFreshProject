@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0470C01B28AC727600E48B7F /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0470C01928AC727600E48B7F /* BoardTableViewCell.swift */; };
+		0470C01C28AC727600E48B7F /* BoardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0470C01A28AC727600E48B7F /* BoardTableViewCell.xib */; };
 		04F169E528A4E7940092A6E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F169E428A4E7940092A6E6 /* AppDelegate.swift */; };
 		04F169E728A4E7940092A6E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F169E628A4E7940092A6E6 /* SceneDelegate.swift */; };
 		04F169E928A4E7940092A6E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F169E828A4E7940092A6E6 /* ViewController.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0470C01928AC727600E48B7F /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
+		0470C01A28AC727600E48B7F /* BoardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoardTableViewCell.xib; sourceTree = "<group>"; };
 		04F169E128A4E7940092A6E6 /* TeamFreshProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamFreshProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F169E428A4E7940092A6E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04F169E628A4E7940092A6E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +58,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0470C01828AC725E00E48B7F /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				A2598AEF28A8AC59009545E7 /* BoardController.swift */,
+				0470C01928AC727600E48B7F /* BoardTableViewCell.swift */,
+				0470C01A28AC727600E48B7F /* BoardTableViewCell.xib */,
+			);
+			path = Board;
+			sourceTree = "<group>";
+		};
 		04F169D828A4E7940092A6E6 = {
 			isa = PBXGroup;
 			children = (
@@ -75,10 +89,10 @@
 		04F169E328A4E7940092A6E6 /* TeamFreshProject */ = {
 			isa = PBXGroup;
 			children = (
+				0470C01828AC725E00E48B7F /* Board */,
 				A2598AF128A94703009545E7 /* Tab */,
 				A2F058CC28A543C500CAB8F2 /* Helper */,
 				04F169E428A4E7940092A6E6 /* AppDelegate.swift */,
-				A2598AEF28A8AC59009545E7 /* BoardController.swift */,
 				04F169E628A4E7940092A6E6 /* SceneDelegate.swift */,
 				04F169E828A4E7940092A6E6 /* ViewController.swift */,
 				04F169EA28A4E7940092A6E6 /* Main.storyboard */,
@@ -187,6 +201,7 @@
 			files = (
 				04F169F128A4E7980092A6E6 /* LaunchScreen.storyboard in Resources */,
 				04F169EE28A4E7980092A6E6 /* Assets.xcassets in Resources */,
+				0470C01C28AC727600E48B7F /* BoardTableViewCell.xib in Resources */,
 				04F169EC28A4E7940092A6E6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0470C01B28AC727600E48B7F /* BoardTableViewCell.swift in Sources */,
 				04F169E928A4E7940092A6E6 /* ViewController.swift in Sources */,
 				A2598AF028A8AC59009545E7 /* BoardController.swift in Sources */,
 				A2598AF328A94714009545E7 /* VC1Controller.swift in Sources */,

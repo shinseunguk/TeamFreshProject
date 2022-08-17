@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aFg-CB-xjS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aFg-CB-xjS">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -194,25 +194,28 @@
                                     <constraint firstAttribute="height" constant="40" id="zsk-ZD-5xe"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyv-ny-z1o">
-                                <rect key="frame" x="193" y="452.66666666666669" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sUI-bg-RbS">
+                                <rect key="frame" x="0.0" y="94" width="428" height="500"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="500" id="D3x-FV-glF"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jPK-HF-j2q"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="9RY-wY-nFh" firstAttribute="top" secondItem="jPK-HF-j2q" secondAttribute="top" constant="10" id="Ghe-BY-yop"/>
-                            <constraint firstItem="uyv-ny-z1o" firstAttribute="centerY" secondItem="lBz-lu-WWb" secondAttribute="centerY" id="Hmi-2J-Txh"/>
+                            <constraint firstItem="sUI-bg-RbS" firstAttribute="top" secondItem="9RY-wY-nFh" secondAttribute="bottom" id="NMS-Or-L2R"/>
+                            <constraint firstItem="sUI-bg-RbS" firstAttribute="leading" secondItem="jPK-HF-j2q" secondAttribute="leading" id="PSR-39-qEJ"/>
+                            <constraint firstItem="jPK-HF-j2q" firstAttribute="trailing" secondItem="sUI-bg-RbS" secondAttribute="trailing" id="Paz-1R-5uH"/>
                             <constraint firstItem="jPK-HF-j2q" firstAttribute="trailing" secondItem="9RY-wY-nFh" secondAttribute="trailing" id="bA3-Xa-rFn"/>
-                            <constraint firstItem="uyv-ny-z1o" firstAttribute="centerX" secondItem="lBz-lu-WWb" secondAttribute="centerX" id="hm7-mL-loS"/>
                             <constraint firstItem="9RY-wY-nFh" firstAttribute="leading" secondItem="jPK-HF-j2q" secondAttribute="leading" id="tHz-Vf-SKj"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="3" title="" image="4" selectedImage="4S" id="gks-6v-R8G"/>
                     <connections>
+                        <outlet property="tableView" destination="sUI-bg-RbS" id="yUl-0S-NsM"/>
                         <outlet property="tempView" destination="9RY-wY-nFh" id="vDW-TG-ubw"/>
                     </connections>
                 </viewController>
@@ -436,7 +439,7 @@
         <image name="4S" width="56" height="56"/>
         <image name="5" width="56" height="56"/>
         <image name="kakao_login" width="450" height="72"/>
-        <image name="logo_login" width="320" height="153"/>
+        <image name="logo_login" width="640" height="306"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
