@@ -60,6 +60,10 @@ class BoardController : TabmanViewController {
         return formatter.string(from: now as Date)
     }()
     
+    var params : Dictionary<String, Any> = [:]
+    var tLength : Int = 0
+    var tStart : Int = 0
+    
     override func viewDidAppear(_ animated: Bool) {
         tempView.layer.addBorder([.bottom], color: UIColor.systemGray6, width: 2.0)
     }
@@ -75,7 +79,7 @@ class BoardController : TabmanViewController {
         searchObj["wrterLoginId"] = "string"
         searchObj["wrterNcnm"] = "string"
         
-        requestServer()
+        requestServer(order: 0, start: nil, paramLength: nil)
         
         
         setTabMan() // Tabman 설정
@@ -143,7 +147,7 @@ class BoardController : TabmanViewController {
         writeBtn.widthAnchor.constraint(equalToConstant: 75).isActive = true
     }
     
-    func requestServer() {
+    func requestServer(order : Int, start : Int?, paramLength : Int?) {
             let url = "https://yhapidev.teamfresh.co.kr/v1/free-boards/Dt"
             var request = URLRequest(url: URL(string: url)!)
             request.httpMethod = "POST"
@@ -153,35 +157,50 @@ class BoardController : TabmanViewController {
         
             request.timeoutInterval = 10
         
-            let params = [
+        if order == 0 { // param의 length가 20일때 order를 0으로 지정
+            params = [
                 "length" : length,
                 "searchObj" : searchObj,
                 "start" : length * index
             ] as Dictionary
-
-        
             // httpBody 에 parameters 추가
             do {
                 try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
             } catch {
                 print("http Body Error")
             }
+        }else if order == 1 { // param의 length가 20이 안될때 order를 1로 지정
+            params = [
+                "length" : paramLength!,
+                "searchObj" : searchObj,
+                "start" : start!
+            ] as Dictionary
+            // httpBody 에 parameters 추가
+            do {
+                try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+            } catch {
+                print("http Body Error")
+            }
+        }
+        
+        tLength = params["length"] as! Int
+        tStart = params["start"] as! Int
+        
             
             AF.request(request).responseJSON { (response) in
                 switch response.result {
                 case .success:
                     print("POST 성공")
                     do {
-                        // [응답 전체 data 를 json to dictionary 로 변환 실시]
-                        let dicCreate = try JSONSerialization.jsonObject(with: Data(response.data!), options: []) as! [String:Any]
-                        // [jsonArray In jsonObject 형식 데이터를 파싱 실시 : 유니코드 형식 문자열이 자동으로 변환됨]
-//                        print("##\n",dicCreate)
+//                        print("##!! " ,self.params["length"] as! Int - 1)
+                        var lengthFor = self.params["length"] as! Int - 1 // for 문에 넣을 변수 값
+                        let dicCreate = try JSONSerialization.jsonObject(with: Data(response.data!), options: []) as! [String:Any] // [jsonArray In jsonObject 형식 데이터를 파싱 실시 : 유니코드 형식 문자열이 자동으로 변환됨]
                         self.recordsTotal = dicCreate["recordsTotal"] as! Int
                         
                         if dicCreate["code"]! as? Int == 0 || (dicCreate["code"]! as? Int)! >= 0 { // 서버 통신성공
-                            print("##\n",dicCreate["data"]!)
+//                            print("##\n",dicCreate["data"]!)
                             let JSON = dicCreate["data"]! as! NSArray
-                            for x in 0 ... 19 {
+                            for x in 0 ... lengthFor {
                                 let firstResult = JSON[x]
                                 //Convert to Data
                                 let jsonData = try JSONSerialization.data(withJSONObject: firstResult, options: JSONSerialization.WritingOptions.prettyPrinted)
@@ -228,18 +247,23 @@ class BoardController : TabmanViewController {
 extension BoardController: PageboyViewControllerDataSource, TMBarDataSource, UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return index * length
+        return tLength + tStart // 서버통신후 https://yhapidev.teamfresh.co.kr/v1/free-boards/Dt => 해당 URL Response값을 JSON으로 파싱후 총 길이를 지정
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: BoardTableViewCell = tableView.dequeueReusableCell(withIdentifier: "BoardTableViewCell", for: indexPath) as! BoardTableViewCell
-        cell.contentLabel.text = boardCnArr[indexPath.row] as! String
-        cell.nickNameLabel.text = wrterNcnmArr[indexPath.row] as! String
-        cell.dateLabel.text = creatDtArr[indexPath.row] as! String
-        cell.viewCountLabel.text = "조회 \(rdcntArr[indexPath.row] as! Int)"
-        cell.commentCountLabel.text = "\(anscntArr[indexPath.row] as! Int)"
         
-        return cell
+        if boardCnArr.count > indexPath.row{
+            cell.contentLabel.text = boardCnArr[indexPath.row] as! String
+            cell.nickNameLabel.text = wrterNcnmArr[indexPath.row] as! String
+            cell.dateLabel.text = creatDtArr[indexPath.row] as! String
+            cell.viewCountLabel.text = "조회 \(rdcntArr[indexPath.row] as! Int)"
+            cell.commentCountLabel.text = "\(anscntArr[indexPath.row] as! Int)"
+            
+            return cell
+        }else {
+            return UITableViewCell()
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -247,14 +271,19 @@ extension BoardController: PageboyViewControllerDataSource, TMBarDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print("willDisplay " ,indexPath.row)
-        //240 .. 260
-        if self.recordsTotal > indexPath.row { // 252  < 20 40 60 80 ... 220 240
-            if indexPath.row == (index * length) - 1 { // 테이블뷰 맨아래까지 도달
-                print("테이블뷰 맨아래까지 도달할때 서버통신")
-                requestServer()
+        print("willDisplay ", indexPath.row)
+            if indexPath.row == (index * length) - 1 { // 테이블뷰 맨아래까지 도달 79 99 119 139 .... 239
+                    if self.recordsTotal - 20 < indexPath.row {
+                        print("end")
+                        //예시 length => 252 - (239 + 1)
+                        var paramLength : Int = self.recordsTotal - (indexPath.row + 1) // paramLength
+                        var start : Int = indexPath.row + 1 // start
+                        requestServer(order: 1, start: start, paramLength: paramLength)
+                    }else {
+                        print("테이블뷰 맨아래까지 도달할때 서버통신")
+                        requestServer(order: 0, start: nil, paramLength: nil)
+                    }
             }
-        }
     }
     
     

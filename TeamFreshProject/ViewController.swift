@@ -33,9 +33,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
         findPwBtn.tag = 2
         signUpBtn.tag = 3
         
+        idTextField.tag = 4
+        pwTextField.tag = 5
+        
+        idTextField.delegate = self
+        pwTextField.delegate = self
+        
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
         imageView.addGestureRecognizer(tapGR)
         imageView.isUserInteractionEnabled = true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.tag == 4 {
+            pwTextField.becomeFirstResponder()
+        }else if textField.tag == 5 {
+            helper.showLoadingOneSec() // 중복터치 방지
+            loginAction(idTextField: idTextField, pwTextField: pwTextField)
+        }
+        return true
     }
     
     func setUP(){

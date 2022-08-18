@@ -22,23 +22,23 @@
                                     <constraint firstAttribute="height" constant="88" id="UTe-NG-bg3"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="appdev" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nsv-X9-AoQ">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nsv-X9-AoQ">
                                 <rect key="frame" x="20" y="269" width="388" height="50"/>
                                 <color key="backgroundColor" red="0.98420697450000005" green="0.98437517880000003" blue="0.98419648410000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="x3j-NA-1g5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Timf1234" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zjO-Ub-LTp">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zjO-Ub-LTp">
                                 <rect key="frame" x="20" y="334" width="388" height="50"/>
                                 <color key="backgroundColor" red="0.98420697450000005" green="0.98437517880000003" blue="0.98419648410000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ebl-xF-nC5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4R-g0-D3o">
                                 <rect key="frame" x="20" y="414" width="388" height="60"/>
@@ -107,7 +107,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fym-uZ-8i2" secondAttribute="trailing" constant="51" id="0cb-yb-LmO"/>
                             <constraint firstItem="9hR-iC-Hw9" firstAttribute="leading" secondItem="rBe-de-Mek" secondAttribute="trailing" id="18J-Me-Wxe"/>
@@ -436,8 +436,8 @@
         <image name="4" width="56" height="56"/>
         <image name="4S" width="56" height="56"/>
         <image name="5" width="56" height="56"/>
-        <image name="kakao_login" width="300" height="48"/>
-        <image name="logo_login" width="160" height="77"/>
+        <image name="kakao_login" width="450" height="72"/>
+        <image name="logo_login" width="320" height="153"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

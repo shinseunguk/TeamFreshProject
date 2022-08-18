@@ -15,19 +15,18 @@
 		04F169EC28A4E7940092A6E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F169EA28A4E7940092A6E6 /* Main.storyboard */; };
 		04F169EE28A4E7980092A6E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F169ED28A4E7980092A6E6 /* Assets.xcassets */; };
 		04F169F128A4E7980092A6E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F169EF28A4E7980092A6E6 /* LaunchScreen.storyboard */; };
-		940CFB41D0DFA14EDD9329A4 /* Pods_TeamFreshProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EE3A74B283D7A8D32DB69A /* Pods_TeamFreshProject.framework */; };
 		A2598AF028A8AC59009545E7 /* BoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2598AEF28A8AC59009545E7 /* BoardController.swift */; };
 		A2598AF328A94714009545E7 /* VC1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2598AF228A94714009545E7 /* VC1Controller.swift */; };
 		A2598AF528A94720009545E7 /* VC2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2598AF428A94720009545E7 /* VC2Controller.swift */; };
 		A2598AF728A94727009545E7 /* VC3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2598AF628A94727009545E7 /* VC3Controller.swift */; };
 		A2598AF928AA810C009545E7 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2598AF828AA810C009545E7 /* CustomTabBarController.swift */; };
 		A2F058CE28A543D000CAB8F2 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F058CD28A543D000CAB8F2 /* Helper.swift */; };
+		E2BF01FEF818681497B497BD /* Pods_TeamFreshProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D997B55560F547EFDF6F77E /* Pods_TeamFreshProject.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0470C01928AC727600E48B7F /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
 		0470C01A28AC727600E48B7F /* BoardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoardTableViewCell.xib; sourceTree = "<group>"; };
-		04EE3A74B283D7A8D32DB69A /* Pods_TeamFreshProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamFreshProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F169E128A4E7940092A6E6 /* TeamFreshProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamFreshProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F169E428A4E7940092A6E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04F169E628A4E7940092A6E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,14 +35,15 @@
 		04F169ED28A4E7980092A6E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04F169F028A4E7980092A6E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04F169F228A4E7980092A6E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3010F433BDD1625D0420A46D /* Pods-TeamFreshProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamFreshProject.debug.xcconfig"; path = "Target Support Files/Pods-TeamFreshProject/Pods-TeamFreshProject.debug.xcconfig"; sourceTree = "<group>"; };
+		42B75E1D2E1AD3E9717892A7 /* Pods-TeamFreshProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamFreshProject.release.xcconfig"; path = "Target Support Files/Pods-TeamFreshProject/Pods-TeamFreshProject.release.xcconfig"; sourceTree = "<group>"; };
+		7D997B55560F547EFDF6F77E /* Pods_TeamFreshProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamFreshProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2598AEF28A8AC59009545E7 /* BoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardController.swift; sourceTree = "<group>"; };
 		A2598AF228A94714009545E7 /* VC1Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC1Controller.swift; sourceTree = "<group>"; };
 		A2598AF428A94720009545E7 /* VC2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC2Controller.swift; sourceTree = "<group>"; };
 		A2598AF628A94727009545E7 /* VC3Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC3Controller.swift; sourceTree = "<group>"; };
 		A2598AF828AA810C009545E7 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		A2F058CD28A543D000CAB8F2 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		D49FEBBB534B792AFD22C157 /* Pods-TeamFreshProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamFreshProject.debug.xcconfig"; path = "Target Support Files/Pods-TeamFreshProject/Pods-TeamFreshProject.debug.xcconfig"; sourceTree = "<group>"; };
-		F40ED4ACBBF2B6BE86087D62 /* Pods-TeamFreshProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamFreshProject.release.xcconfig"; path = "Target Support Files/Pods-TeamFreshProject/Pods-TeamFreshProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				940CFB41D0DFA14EDD9329A4 /* Pods_TeamFreshProject.framework in Frameworks */,
+				E2BF01FEF818681497B497BD /* Pods_TeamFreshProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +74,7 @@
 				04F169E328A4E7940092A6E6 /* TeamFreshProject */,
 				04F169E228A4E7940092A6E6 /* Products */,
 				C92BB002F35D67FA1BDC66E7 /* Pods */,
-				75DBE1FE44FFBBCD855B93D7 /* Frameworks */,
+				40A5A9C9E7EF05B9E874208E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,10 +104,10 @@
 			path = TeamFreshProject;
 			sourceTree = "<group>";
 		};
-		75DBE1FE44FFBBCD855B93D7 /* Frameworks */ = {
+		40A5A9C9E7EF05B9E874208E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				04EE3A74B283D7A8D32DB69A /* Pods_TeamFreshProject.framework */,
+				7D997B55560F547EFDF6F77E /* Pods_TeamFreshProject.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -133,8 +133,8 @@
 		C92BB002F35D67FA1BDC66E7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D49FEBBB534B792AFD22C157 /* Pods-TeamFreshProject.debug.xcconfig */,
-				F40ED4ACBBF2B6BE86087D62 /* Pods-TeamFreshProject.release.xcconfig */,
+				3010F433BDD1625D0420A46D /* Pods-TeamFreshProject.debug.xcconfig */,
+				42B75E1D2E1AD3E9717892A7 /* Pods-TeamFreshProject.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -146,11 +146,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04F169F528A4E7980092A6E6 /* Build configuration list for PBXNativeTarget "TeamFreshProject" */;
 			buildPhases = (
-				8FD0B7505FC99AA1BA32DDE7 /* [CP] Check Pods Manifest.lock */,
+				7890B5CE23B8D0377B63CBC9 /* [CP] Check Pods Manifest.lock */,
 				04F169DD28A4E7940092A6E6 /* Sources */,
 				04F169DE28A4E7940092A6E6 /* Frameworks */,
 				04F169DF28A4E7940092A6E6 /* Resources */,
-				0C3630EBC0E5BEBD7DDC4971 /* [CP] Embed Pods Frameworks */,
+				0DC441C9C67AAFA62C305C0F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -209,7 +209,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0C3630EBC0E5BEBD7DDC4971 /* [CP] Embed Pods Frameworks */ = {
+		0DC441C9C67AAFA62C305C0F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -226,7 +226,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TeamFreshProject/Pods-TeamFreshProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8FD0B7505FC99AA1BA32DDE7 /* [CP] Check Pods Manifest.lock */ = {
+		7890B5CE23B8D0377B63CBC9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -408,7 +408,7 @@
 		};
 		04F169F628A4E7980092A6E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D49FEBBB534B792AFD22C157 /* Pods-TeamFreshProject.debug.xcconfig */;
+			baseConfigurationReference = 3010F433BDD1625D0420A46D /* Pods-TeamFreshProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -437,7 +437,7 @@
 		};
 		04F169F728A4E7980092A6E6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F40ED4ACBBF2B6BE86087D62 /* Pods-TeamFreshProject.release.xcconfig */;
+			baseConfigurationReference = 42B75E1D2E1AD3E9717892A7 /* Pods-TeamFreshProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

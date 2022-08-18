@@ -9,5 +9,6 @@ target 'TeamFreshProject' do
 
   pod 'Alamofire', '5.6.1'
   pod 'Tabman'
-
+  pod 'IQKeyboardManagerSwift'
+  
 end
