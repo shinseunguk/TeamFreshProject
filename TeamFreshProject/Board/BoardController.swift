@@ -23,16 +23,13 @@ class BoardController : TabmanViewController {
     
     var index : Int = 0
     var searchObj : Dictionary<String, Any> = [:] //Server Request 하기 위한 Dictionary
+    var creatDt : String? = nil
     
     var wrterNcnmArr : [Any] = []
     var anscntArr : [Int] = []
     var creatDtArr : [Any] = []
     var rdcntArr : [Int] = []
     var boardCnArr : [Any] = []
-    
-    
-    
-    
     var viewPagerArr = ["자유게시판", "한줄평", "영차TV"]
     var writeBtn: UIButton = {
         let writeBtn = UIButton()
@@ -41,6 +38,17 @@ class BoardController : TabmanViewController {
         writeBtn.layer.cornerRadius = 5
         writeBtn.backgroundColor = UIColor.init(displayP3Red: 147/255, green: 111/255, blue: 104/255, alpha: 1)// backgroundColor #936f68
         return writeBtn
+    }()
+    let exceptionLabel : UILabel = {
+        let exceptionLabel = UILabel()
+        exceptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        exceptionLabel.textAlignment = .center
+        exceptionLabel.font = UIFont.systemFont(ofSize: 15)
+        exceptionLabel.textColor = .black
+        exceptionLabel.backgroundColor = .white
+        exceptionLabel.numberOfLines = 1
+        exceptionLabel.text = "서버 통신실패 잠시후 다시 시도해주세요."
+        return exceptionLabel
     }()
     
     var creatDEnd : String = {
@@ -178,16 +186,17 @@ class BoardController : TabmanViewController {
                                 //Convert to Data
                                 let jsonData = try JSONSerialization.data(withJSONObject: firstResult, options: JSONSerialization.WritingOptions.prettyPrinted)
                                 let json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
-                                print("\(x)????1 ",json!["wrterNcnm"]! as Any) // 작성자
-                                print("\(x)????2 ",json!["anscnt"]! as Any) // 댓글수
-                                print("\(x)????3 ",json!["creatDt"]! as Any) // 생성일시
-                                print("\(x)????4 ",json!["rdcnt"]! as Any) // 조회수
-                                print("\(x)????5 ",json!["boardCn"]! as Any) // 게시글 내용
+//                                print("\(x)????1 ",json!["wrterNcnm"]! as Any) // 작성자
+//                                print("\(x)????2 ",json!["anscnt"]! as Any) // 댓글수
+//                                print("\(x)????3 ",json!["creatDt"]! as Any) // 생성일시
+//                                print("\(x)????4 ",json!["rdcnt"]! as Any) // 조회수
+//                                print("\(x)????5 ",json!["boardCn"]! as Any) // 게시글 내용
+                                self.creatDt = json!["creatDt"]! as! String
                                 
                                 //json에서 값 가져와 배열로 담기 => tableView에 값들 뿌려주기 위한 작업
                                 self.wrterNcnmArr.append(json!["wrterNcnm"]! as Any)
                                 self.anscntArr.append(json!["anscnt"]! as! Int)
-                                self.creatDtArr.append(json!["creatDt"]! as Any)
+                                self.creatDtArr.append("\(self.creatDt!.substring(from: 2, to: 3)).\(self.creatDt!.substring(from: 5, to: 6)).\(self.creatDt!.substring(from: 8, to: 9))") // ex) 22-08-12
                                 self.rdcntArr.append(json!["rdcnt"]! as! Int)
                                 self.boardCnArr.append(json!["boardCn"]! as Any)
                             }
@@ -198,7 +207,11 @@ class BoardController : TabmanViewController {
                                 self.tableView.reloadData()
                             
                         }else { // 서버 통신실패
-                            print("서버 통신실패 예외처리 ~")
+                            print("서버 통신실패 예외처리")
+                            self.tableView.removeFromSuperview()
+                            self.view.addSubview(self.exceptionLabel)
+                            self.exceptionLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+                            self.exceptionLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
                         }
                     } catch {
                         print("catch :: ", error.localizedDescription)

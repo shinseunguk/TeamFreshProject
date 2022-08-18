@@ -21,13 +21,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     let helper : Helper = Helper()
     
-    struct userlist: Codable {
-        var code : Int
-        var data : String
-        var msg : String
-        var success : Int
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
